@@ -1,37 +1,19 @@
+from functions_mnist import prepare_mnist
 import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
 from keras.callbacks import ModelCheckpoint
 from tensorflow.keras import layers
-from tensorflow.keras.datasets import mnist
 from tensorflow.keras.models import Model
 from datetime import datetime
 from pathlib import Path
 
-num_classes = 10
 project_name = 'mnist'
 base_path = './'
 checkpoint_folder = 'checkpoint/'
 checkpoint_full_path = base_path + checkpoint_folder + project_name + '/'
 Path(checkpoint_full_path).mkdir(parents=True, exist_ok=True)
 start_epoch = 0
-
-
-def preprocess(array):
-    """
-    Normalizes the supplied array and reshapes it into the appropriate format.
-    """
-
-    array = array.astype("float32") / 255.0
-    array = np.reshape(array, (len(array), 28, 28, 1))
-    return array
-
-
-def prepare_mnist():
-    (x_train, y_train), (x_test, y_test) = mnist.load_data()
-    x_train = preprocess(x_train)
-    x_test = preprocess(x_test)
-    return (x_train, y_train), (x_test, y_test)
 
 
 def prepare_autoencoder():
