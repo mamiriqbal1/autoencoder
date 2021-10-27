@@ -31,8 +31,8 @@ def prepare_autoencoder():
     x = layers.Conv2D(32, (3, 3), activation='relu', padding='same')(input)
     x = layers.MaxPool2D((2, 2), padding='same')(x)
     x = layers.Conv2D(32, (3, 3), activation='relu', padding='same')(x)
-    x = layers.MaxPool2D((2, 2), padding='same', name='e')(x)
-    e = layers.Conv2D(1, (3, 3), activation='relu', padding='same')(x)
+    x = layers.MaxPool2D((2, 2), padding='same')(x)
+    e = layers.Conv2D(1, (3, 3), activation='relu', padding='same', name='e')(x)
 
     # Decoder
     d1 = layers.Conv2DTranspose(32, (3, 3), strides=2, activation="relu", padding="same", name='d1')(e)
