@@ -19,7 +19,7 @@ if __name__ == "__main__":
         print('Usage: <epochs> [checkpoint_file_name start_epoch]')
         exit(1)
     if len(sys.argv) >= 2:
-        epochs = sys.argv[1]
+        epochs = int(sys.argv[1])
     if len(sys.argv) >= 4:
         checkpoint_file_name = sys.argv[2]
         start_epoch = sys.argv[3]
