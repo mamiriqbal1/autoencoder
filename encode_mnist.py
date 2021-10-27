@@ -1,6 +1,16 @@
 from functions_mnist import load_encoder_decoder, prepare_mnist
 import numpy as np
 from pathlib import Path
+import sys
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print('Usage: <checkpoint_file_name>')
+        exit(1)
+    if len(sys.argv) >= 2:
+        checkpoint_file_name = sys.argv[1]
+
 
 (x_train, y_train), (x_test, y_test) = prepare_mnist()
 
@@ -8,13 +18,12 @@ project_name = 'mnist'
 base_path = './'
 checkpoint_folder = 'checkpoint/'
 checkpoint_full_path = base_path + checkpoint_folder + project_name + '/'
-checkpoint_file_name = '20211024143844-0-checkpoint-048-0.020007.h5'
 data_path = 'data/'
 data_path_full = base_path + data_path + project_name + '/'
 Path(data_path_full).mkdir(parents=True, exist_ok=True)
 
 
-encoder, decoder = load_encoder_decoder(checkpoint_full_path + checkpoint_file_name)
+autoencoder, encoder, decoder = load_encoder_decoder(checkpoint_full_path + checkpoint_file_name)
 x_train_encoded = encoder.predict(x_train)
 x_test_encoded = encoder.predict(x_test)
 
