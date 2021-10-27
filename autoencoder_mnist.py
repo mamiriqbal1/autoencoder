@@ -30,7 +30,7 @@ def prepare_autoencoder():
     d1 = layers.Conv2DTranspose(1, (3, 3), strides=2, activation="relu", padding="same", name='d1')(e)
     d2 = layers.Conv2DTranspose(64, (3, 3), strides=2, activation="relu", padding="same", name='d2')(d1)
     d3 = layers.Conv2D(1, (3, 3), activation="sigmoid", padding="same", name='d3')(d2)
-    c1 = layers.Flatten(name='c1')(d2)
+    c1 = layers.Flatten(name='c1')(e)
     classes = layers.Dense(10, activation='softmax', name='classes')(c1)
 
     # Autoencoder
